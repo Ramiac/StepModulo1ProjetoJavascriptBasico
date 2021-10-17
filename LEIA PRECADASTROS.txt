@@ -1,0 +1,49 @@
+const atendente = new Atendente('atendente', 'rt');
+
+const alunos = [{
+        "nome": "rami achcar",
+        "senha": "rt",
+        "turmas": [
+            "ju-ji-tsu",
+            "escalada em rocha"
+        ]
+    },
+    {
+        "nome": "josé silveira",
+        "senha": "df",
+        "turmas": [
+            "escalada em rocha",
+            "spining",
+            "yoga"
+        ]
+    },
+    {
+        "nome": "juca bala",
+        "senha": "12345",
+        "turmas": []
+    }
+];
+
+const professores = [{
+        "nome": "antonio pereira",
+        "senha": "gh",
+        "turmas": [
+            "yoga",
+            "escalada em rocha",
+            "box thai"
+        ]
+    },
+    {
+        "nome": "carlos monteiro",
+        "senha": "pc",
+        "turmas": [
+            "spining",
+            "ju-ji-tsu"
+        ]
+    },
+    {
+        "nome": "joao felipe costa",
+        "senha": "hj",
+        "turmas": []
+    }
+];

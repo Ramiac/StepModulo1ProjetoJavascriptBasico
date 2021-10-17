@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rami - Sistema de academia de Gínastica</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+<!-- -------------------logo----------------- -->
+        <img class="logo" src="./img/logo.png" alt="logo da BootyTech">
+  
+<!-- -------------------login------------------
+inclui input[text] de usuarioe senha, radios para tipo de usuario
+e button de login -> manda para outra 'pagina'-------------- -->
+    <div class="container" id="login">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Login</h3>
+                </div>
+                <div class="card-body">
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="usuario" placeholder="Nome do Usuário">
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input type="password" class="form-control" id="senha" placeholder="Senha">
+                    </div>
+
+                    <fieldset class="form-group">
+                        <div class="row justify-content-md-center">
+                            <legend class="col-form-label col-sm-3 pt-0 texto-branco">Você é: </legend>
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="quemE" id="radioAluno"
+                                        value="aluno" checked>
+                                    <label class="form-check-label texto-branco" for="gridRadios1">
+                                        Aluno
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="quemE" id="radioProfessor"
+                                        value="professor">
+                                    <label class="form-check-label texto-branco" for="gridRadios2">
+                                        Professor
+                                    </label>
+                                </div>
+                                <div class="form-check disabled">
+                                    <input class="form-check-input" type="radio" name="quemE" id="radioAtendente"
+                                        value="atendente">
+                                    <label class="form-check-label texto-branco" for="gridRadios3">
+                                        Atendente
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-group">
+                        <input type="submit" value="Login" class="btn float-right login_btn"
+                            onclick="atendente.dirigeUsuario()">
+                    </div>
+                </div>
+                <div id="usernameConfirma" class="warning"></div>
+            </div>
+        </div>
+    </div>
+
+<!-- pagina geral que recebe todos os botao de navigacao em todas secçaos 
+e todas secções superpositcionada ---------------------------- -->
+    <div id="interface" class="container texto-branco">
+        
+        <div class="row">
+
+<!--  todos buttons de navigação, num tipo aside -->
+            <div class="col-3">
+                <button class="btn btn-danger col-12 my-4" id="buttonSair"
+                    onclick="usuarioLogado.buttons('buttonSair')">
+                    Sair</button>
+
+                <button class="btn col-12 my-2 interface_btn" id="buttonCadastraAlunos"
+                    onclick="usuarioLogado.buttons('buttonCadastraAlunos')">
+                    Cadastrar Alunos</button>
+                <button class="btn col-12 my-2 interface_btn" id="buttonCadastraProf"
+                    onclick="usuarioLogado.buttons('buttonCadastraProf')">
+                    Cadastrar Professor</button>
+                <button class="btn col-12 my-2 interface_btn" id="buttonCadastraTurmas"
+                    onclick="usuarioLogado.buttons('buttonCadastraTurmas')">
+                    Cadastrar Turma</button>
+                <button class="btn interface_btn col-12 my-2" id="buttonConsultarAlunos"
+                    onclick="usuarioLogado.buttons('buttonConsultarAlunos')">
+                    Consultar alunos</button>
+                <button class="btn interface_btn col-12 my-2" id="buttonConsultarProfessores"
+                    onclick="usuarioLogado.buttons('buttonConsultarProfessores')">
+                    Consultar professores</button>
+                <button class="btn interface_btn col-12 my-2" id="buttonConsultarTurmas"
+                    onclick="usuarioLogado.buttons('buttonConsultarTurmas')">
+                    Consultar turmas</button>
+                <button class="btn interface_btn col-12 my-2" id="buttonConsultarMatriculas"
+                    onclick="usuarioLogado.buttons('buttonConsultarMatriculas')">
+                    Consultar matriculas</button>
+                <button class="btn interface_btn col-12 my-2" id="buttonMatriculaAluno"
+                    onclick="usuarioLogado.buttons('buttonMatriculaAluno')">
+                    Matricula de aluno</button>
+
+                
+            </div>
+
+<!-- ------------   secção de cadastramento de aluno
+        somente visível por atendente ------------------->
+            <div class="col-8 offset-1" id="cadastramentoDeAluno">
+                <h3 class="caixa-adaptiva">Cadastramento de Alunos</h3>
+                <hr>
+
+                <div class="caixa-adaptiva">
+
+                    <div class="form-group row justify-content-md-center">
+                        <label for="usuario" class="col-sm-4 col-form-label">Nome de Usuário</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="cadastroNomeUsuario">
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-md-center">
+                        <label for="inputPassword3" class="col-sm-4 col-form-label">Senha</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="cadastroSenhaUsuario">
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-md-center">
+                        <label for="inputPassword3" class="col-sm-4 col-form-label">Confirm Senha</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="confirmSenhaUsuario">
+                        </div>
+                    </div>
+                    <div class="form-group row  justify-content-md-center">
+                        <div class="col-sm-4 offset-1">
+                            <button class="btn interface_btn" onclick="atendente.cadastrarAluno()">Cadastra Aluno</button>
+                        </div>
+                    </div>
+
+                    <div id="confirmCadastroAluno"></div>
+                </div>
+
+            </div>
+
+<!-- ------------   secção de cadastramento de aluno
+somente visível por atendente ------------------->
+            <div class="col-8 offset-1" id="cadastramentoDeProfessor">
+                <h3 class="caixa-adaptiva">Cadastramento de Professores</h3>
+                <hr>
+                <div class="caixa-adaptiva">
+
+                    <div class="form-group row justify-content-md-center">
+                        <label for="usuario" class="col-sm-4 col-form-label">Nome de Professor</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="cadastroNomeProfessor">
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-md-center">
+                        <label for="inputPassword3" class="col-sm-4 col-form-label">Senha</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="cadastroSenhaProfessor">
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-md-center">
+                        <label for="inputPassword3" class="col-sm-4 col-form-label">Confirm Senha</label>
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="confirmSenhaProfessor">
+                        </div>
+                    </div>
+                    <div class="form-group row  justify-content-md-center">
+                        <div class="col-sm-4 offset-1">
+                            <button class="btn interface_btn" onclick="atendente.cadastrarProf()">Cadastra
+                                Professor</button>
+                        </div>
+                    </div>
+
+                    <div id="confirmCadastroProfessor"></div>
+                </div>
+            </div>
+
+<!-- ------------   secção de cadastramento de turma
+        somente visível por atendente ------------------->
+            <div class="col-8 offset-1" id="cadastramentoDeTurma">
+                <h3 class="caixa-adaptiva">Cadastramento de Turmas</h3>
+                <hr>
+                <div class="caixa-adaptiva">
+
+                    <div class="form-group row justify-content-md-center">
+                        <label for="turma" class="col-sm-4 col-form-label">Nome da turma</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="cadastroNomeTurma">
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-md-center">
+                        <label for="professorDaTurma" class="col-sm-4 col-form-label">Selecione o Professor</label>
+                        <div class="col-sm-6">
+                            <select multiple class="form-control" id="cadastroTurmaProfessor"></select>
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-md-center">
+                        <label for="turmaDia" class="col-sm-4 col-form-label">Dias da turma</label>
+                        <div class="col-sm-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="semana" id="Terça-feira"
+                                    value="Terça-feira">
+                                <label class="form-check-label">Terça-feira</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="semana" id="Quarta-feira"
+                                    value="Quarta-feira">
+                                <label class="form-check-label">Quarta-feira</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="semana" id="Quinta-feira"
+                                    value="Quinta-feira">
+                                <label class="form-check-label">Quinta-feira</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="semana" id="Sexta-feira"
+                                    value="Sexta-feira">
+                                <label class="form-check-label">Sexta-feira</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="semana" id="Sábado" value="Sábado">
+                                <label class="form-check-label">Sábado</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="semana" id="Domingo" value="Domingo">
+                                <label class="form-check-label">Domingo</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row justify-content-md-center">
+                        <label for="turmaHorario" class="col-sm-4 col-form-label">Horario da turma</label>
+                        <div class="col-sm-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="horario" id="manha1" value="manha1">
+                                <label class="form-check-label">5-7:00</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="horario" id="manha2" value="manha2">
+                                <label class="form-check-label" for="segunda">7-9:00</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="horario" id="manha3" value="manha3">
+                                <label class="form-check-label" for="segunda">9-11:00</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="horario" id="manha4" value="manha4">
+                                <label class="form-check-label" for="segunda">11-13:00</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="horario" id="tarde1" value="tarde1">
+                                <label class="form-check-label" for="segunda">13-15:00</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="horario" id="tarde2" value="tarde2">
+                                <label class="form-check-label" for="segunda">15-17:00</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="horario" id="tarde3" value="tarde3">
+                                <label class="form-check-label" for="segunda">17-19:00</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="horario" id="tarde4" value="tarde4">
+                                <label class="form-check-label" for="segunda">19-21:00</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="horario" id="tarde5" value="tarde5">
+                                <label class="form-check-label" for="segunda">21-23:00</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row  justify-content-md-center">
+                        <div class="col-sm-6 offset-3">
+                            <button class="btn interface_btn" onclick="usuarioLogado.cadastrarTurma()">Cadastrar
+                                turma</button>
+                        </div>
+                    </div>
+
+                    <div id="confirmCadastroTurma"></div>
+                </div>
+            </div>
+
+<!-- ------------   secção de impressao de lista de aluno cadastrados
+        somente visível por atendente ------------------->
+            <div class="col-8 offset-1" id="listaDeAlunos">
+                <h3 class="caixa-adaptiva">Lista dos alunos cadastrados</h3>
+                <hr>
+                <div class="caixa-adaptiva">
+                    <div id="listAlunos" class="col-sm-11 offset-1"></div>
+                </div>
+            </div>
+
+<!-- ------------   secção de de impressao de lista de professores cadastrados
+        somente visível por atendente ------------------->
+            <div class="col-8 offset-1" id="listaDeProfessores">
+                <h3 class="caixa-adaptiva">Lista dos professores cadastrados</h3>
+                <hr>
+                <div class="caixa-adaptiva">
+                    <div id="listaProfessores" class="col-sm-11 offset-1"></div>
+                </div>
+            </div>
+
+<!-- ------------   secção de de impressao de lista de turmas cadastradas
+        visível por atendente, professores e alunos ------------------->
+            <div class="col-8 offset-1" id="listaDeTurmas">
+                <h3 class="caixa-adaptiva">Lista das turmas cadastradas</h3>
+                <hr>
+                <div class="caixa-adaptiva">
+                    <div id="listaTurmas" class="col-sm-11 offset-1"></div>
+                </div>
+            </div>
+
+            
+<!-- ------------   secção de de impressao de lista de matriculas 
+        visível por atendente e professores ------------------->
+            <div class="col-8 offset-1" id="listaDeMatriculas">
+                <h3 class="caixa-adaptiva">Lista das matriculas cadastradas</h3>
+                <hr>
+                <div class="caixa-adaptiva">
+                    <div class="form-group">
+                        <div class="col-sm-6 offset-3">
+                            <select class="form-control" id="turmasParaMatriculas"
+                                onchange="usuarioLogado.imprimeMatriculas()">
+                            </select>
+                        </div>
+                    </div>
+                    <div id="listaMatriculas" class="col-sm-11 offset-1"></div>
+                </div>
+            </div>
+
+<!-- ------------   secção de matricula alunos em aula
+        visível somente por atendente ------------------->
+            <div class="col-8 offset-1" id="matriculaUmAluno">
+                <h3 class="caixa-adaptiva">Matricula aluno numa turma</h3>
+                <hr>
+                <div class="caixa-adaptiva">
+
+                    <div class="form-group row justify-content-md-center">
+                        <label for="turma" class="col-sm-4 col-form-label">Seleciona a turma</label>
+                        <div class="col-sm-6">
+                            <select multiple class="form-control" id="selecaoTurma"></select>
+                        </div>
+                    </div>
+                    <div id="infoTurma"></div>
+                    <div class="form-group row justify-content-md-center">
+                        <label for="turmaHorario" class="col-sm-4 col-form-label">Seleciona o aluno</label>
+                        <div class="col-sm-6">
+                            <select multiple class="form-control" id="selecaoAluno"></select>
+                        </div>
+                    </div>
+                    <div class="form-group row  justify-content-md-center">
+                        <div class="col-sm-4 offset-1">
+                            <button class="btn interface_btn" onclick="usuarioLogado.matriculaAluno()">
+                                Cadastra <br> o aluno na turma</button>
+                        </div>
+                    </div>
+
+                    <div id="confirmMatriculaAluno"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+<script src="js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+</script>
+
+</html>

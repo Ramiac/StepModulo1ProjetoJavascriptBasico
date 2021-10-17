@@ -1,0 +1,99 @@
+/* ############### CSS - Sistema de academia de Gínastica ################## */
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html,
+body {
+    background-image: url("../img/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+}
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    width: 1000px;
+}
+
+.texto-branco {
+    color: lightgoldenrodyellow;
+}
+
+/* ############## LOGIN ############ */
+
+.card {
+    height: 380px;
+    margin-top: 10%;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+
+.card-header h3 {
+    color: white;
+}
+
+
+.input-group-prepend span {
+    width: 50px;
+    background-color: #FFC312;
+    color: black;
+    border: 0 !important;
+}
+
+input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
+
+}
+
+.login_btn {
+    color: black;
+    background-color: #FFC312;
+    width: 100px;
+}
+
+.login_btn:hover {
+    color: black;
+    background-color: white;
+}
+
+.warning {
+    height: 50px;
+    width: 400px;
+    border-radius: 10px;
+    background-color: darkred;
+    margin-top: 100px;
+    text-align: center;
+    color: lightgrey;
+    font-weight: bold;
+}
+
+/* ############## interface ############ */
+
+#interface{
+    margin-top: 50px;
+}
+
+.caixa-adaptiva{
+    padding: 10px;
+    height: auto;
+    width: 700px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 6px;
+}
+
+.interface_btn {
+    color: black;
+    background-color: #FFC312;
+}
+
+.interface_btn:hover {
+    color: black;
+    background-color: white;
+}
